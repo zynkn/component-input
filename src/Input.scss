@@ -4,7 +4,12 @@
   display: inline-block;
   font-family: 'Varela Round', sans-serif;
   &:focus-within{
-
+    .label-text{
+      color:#9facbb;
+    }
+    .input-wrap > input{
+      border-color: #2f96ef;
+    }
   }
   .label-text{
     display: block;
@@ -12,7 +17,7 @@
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 0.5em;
-    color: #9facbb;
+    color: rgba(#9facbb,0.5);
   }
   .input-wrap{
     position: relative;
@@ -20,7 +25,7 @@
       width: 400px;
       outline: none;
       padding: 1em;
-      border: 3px solid #2f96ef;
+      border: 3px solid rgba(#2f96ef,0.5);
       border-radius: 7px;
       padding-right: 3em;
       box-sizing: border-box;
@@ -59,6 +64,7 @@
       height: 6px;
       background: #f3f4f9;
       border-radius: 6px;
+      transition: background-color 0.4s;
       &.active:nth-child(1){background:#ff8180}
       &.active:nth-child(2){background: #fac675}
       &.active:nth-child(3){background: #6fc7a4}
