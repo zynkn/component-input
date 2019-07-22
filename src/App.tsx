@@ -2,7 +2,8 @@ import React from 'react';
 
 import './App.css';
 import Input from './Input';
-import Input2, { Password } from './components/Input';
+// import Input2, { Password } from './components/Input';
+import Input2 from './components/Input2';
 
 import { FaUser, FaAsterisk, FaEnvelope } from 'react-icons/fa';
 
@@ -13,7 +14,13 @@ const App: React.FC = () => {
   console.log(value);
   return (
     <div className="App">
-      <Input />
+      <Input2 />
+
+      <div style={{ marginTop: '60px' }}>
+        <Input2 direction="row" />
+      </div>
+
+      {/* <Input />
       <div style={{ marginTop: '16px' }}>
         <Input2
           type="password"
@@ -48,7 +55,7 @@ const App: React.FC = () => {
           }
           allowClear
         />
-      </div>
+      </div> */}
     </div>
   );
 }

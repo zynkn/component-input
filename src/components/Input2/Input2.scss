@@ -1,0 +1,21 @@
+
+.Input{
+  /* 공통 style */
+  display: inline-block;
+  text-align: left;
+
+  /* default direction은 column */
+  
+  .validation-text{
+    display: block;
+  }
+  &.row{
+    .label-text{
+      vertical-align: top;
+      display: inline-block;
+    }
+    .input-wrap{
+      display: inline-block;
+    }
+  }
+}
