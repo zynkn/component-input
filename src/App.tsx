@@ -1,9 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import Input from './Input';
-// import Input2, { Password } from './components/Input';
-import Input2 from './components/Input2';
+import Input2 from 'components/Input2';
 
 import { FaUser, FaAsterisk, FaEnvelope } from 'react-icons/fa';
 
@@ -14,48 +12,13 @@ const App: React.FC = () => {
   console.log(value);
   return (
     <div className="App">
-      <Input2 />
+      <Input2 label="이름" />
+      <br /><br />
+      <Input2 label="이메일" direction="row" />      
+      <br /><br />
+      <Input2 label="level" direction="row"  disabled/>
 
-      <div style={{ marginTop: '60px' }}>
-        <Input2 direction="row" />
-      </div>
-
-      {/* <Input />
-      <div style={{ marginTop: '16px' }}>
-        <Input2
-          type="password"
-          direction="row"
-          width={220}
-          validation={
-            {
-              condition: validation,
-              invalidText: '* Check your input again.',
-              validText: 'Validation test passed.',
-            }
-          }
-          allowClear />
-      </div>
-      <div style={{ marginTop: '16px' }}>
-        <Password />
-      </div>
-      <div style={{ marginTop: '16px' }}>
-        <Input2
-          label="Username"
-          value={value}
-          onChange={setValue}
-          width={320}
-          direction="column"
-          prefix={<FaUser style={{ width: 12, color: 'gray' }} />}
-          validation={
-            {
-              condition: validation,
-              invalidText: '* Check your input again.',
-              validText: 'Selfmade Orange SelfMade Orange.',
-            }
-          }
-          allowClear
-        />
-      </div> */}
+    
     </div>
   );
 }

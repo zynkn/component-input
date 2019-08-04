@@ -1,22 +1,37 @@
 import React from 'react';
 import './Input2.scss';
+import { FaTimesCircle, FaAsterisk, FaEnvelope } from 'react-icons/fa';
 
 
 const Input2 = ({
-  width, direction, className, style, label, type, validationText
+  width, direction, className,disabled, style, label, type, validationText, allowClear
 }: any) => {
   return (
     <label className={`Input ${className} ${direction}`}>
-      <span className={`label-text`}>
-        {label || 'default label'}
-      </span>
-      <div className={`input-wrap`}>
-        <input type={type || 'text'} />
-        <span className={`validation-text`}>
-          {validationText || 'default validation'}
+      {
+        label && 
+        <span className={`label-text`}>
+          {label}
         </span>
-      </div>
+      }
+      
+      <div className={`input-wrap ${disabled&&'disabled'}`}>
+        <span className="prefix-icon">
+          <FaEnvelope />
+        </span>
+        <input type={type || 'text'} placeholder="admin@gmail.com" disabled={disabled}/>
+        {
+          allowClear && 
+          <button className="clear-btn">
+            <FaTimesCircle />
+          </button>
+        }
 
+        
+      </div>
+      <span className={`validation-text`} style={direction&&label&&{marginLeft: `${label.length + 1}em`}}>
+          {validationText || 'default validation 12312312312312 32131231 2321'}
+        </span>
     </label>
   )
 }
