@@ -1,48 +1,32 @@
 import React from 'react';
 import './Input.scss';
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
-const REGEX_WEAK = /^[A-Za-z0-9]{1,24}$/;
-const REGEX_FAIR = /^[A-Za-z0-9]{4,24}$/;
-const REGEX_STRONG = /^[A-Za-z0-9]{8,24}$/;
-const TEXT: { [key: string]: string } = {
-  weak: "Too weak",
-  fair: "Colud be stronger",
-  strong: "Strong password",
+interface InputProps {
+  id?: string;
+  placeholder?: string;
+  style?: React.CSSProperties;
+  className?: string;
+  prefix?: string | number | React.ReactNode;
+  suffix?: string | number | React.ReactNode;
+  disabled?: boolean;
+  block?: boolean;
+  type?: "text" | "number" | "email" | "password" | "tel";
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onPressEnter?: () => void;
 }
-const Input: React.FC = () => {
-  const [inputType, setInputType] = React.useState("password");
-  const [value, setValue] = React.useState("");
-  const [validation, setValidation]: any = React.useState("");
-
-  const handleInputType = () => {
-    setInputType(inputType === "text" ? "password" : "text");
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ id, type = 'text', className, placeholder, disabled, block, prefix, suffix, value, onChange, onPressEnter }, ref) => {
+  function handlePressEnter(e: React.KeyboardEvent<HTMLInputElement>){
+    if(onPressEnter && e.key === 'Enter'){
+      onPressEnter();
+    }
   }
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (REGEX_STRONG.test(e.target.value)) { setValidation("strong") }
-    else if (REGEX_FAIR.test(e.target.value)) { setValidation("fair") }
-    else if (REGEX_WEAK.test(e.target.value)) { setValidation("weak") }
-    else { setValidation('') }
-
-    setValue(e.target.value);
-  }
-
   return (
-    <label className="Input" htmlFor="password">
-      <span className="label-text">ENTER PASSWORD</span>
-      <div className="input-wrap">
-        <input onChange={handleChange} value={value} type={inputType} id="password" maxLength={24} />
-        <button className="toggle-btn" onClick={handleInputType}>
-          {inputType === "text" ? <FaEye /> : <FaEyeSlash />}
-        </button>
-      </div>
-      <div className={`validator ${validation}`}>
-        <span className="bar" />
-        <span className="bar" />
-        <span className="bar" />
-        <span className="validator-text">{TEXT[validation]}</span>
-      </div>
+    <label  className={`Input ${className} ${block ? '--block' : ''}`} htmlFor={id}>
+      {typeof prefix === 'string' ? <span>{prefix}</span> : prefix}
+      <input ref={ref} id={id} onKeyPress={handlePressEnter} onChange={onChange} placeholder={placeholder} disabled={disabled} type={type} value={value}/>
+      {typeof suffix === 'string' ? <span>{suffix}</span> : suffix}
     </label>
   )
-}
+});
 export default Input;
